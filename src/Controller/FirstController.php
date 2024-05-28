@@ -16,4 +16,17 @@ class FirstController extends AbstractController
             'age' => '25'
         ]);
     }
+
+    #[Route('/sayHello', name: 'say.hello')]
+    public function sayHello(): Response
+    {
+        $rand = rand(0,10);
+        echo $rand;
+        if ($rand > 5)
+        {
+            return $this->redirectToRoute('app_first');
+        }
+
+        return $this->forward('App\Controller\FirstController::index');
+    }
 }
